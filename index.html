@@ -10,9 +10,8 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2T91XQ8C1K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-2T91XQ8C1K');
   </script>
 
@@ -52,6 +51,11 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      justify-content: center;
+    }
+
+    #loginSection h2 {
+      margin-bottom: 20px;
     }
 
     #loginSection input {
@@ -59,6 +63,7 @@
       margin: 5px 0;
       border-radius: 5px;
       border: 1px solid #555;
+      width: 100%;
     }
 
     #loginSection button {
@@ -69,6 +74,8 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.2s ease-in-out;
+      width: 100%;
+      margin-top: 10px;
     }
 
     #loginSection button:hover {
@@ -88,55 +95,82 @@
       text-align: center;
     }
 
-    /* Styled Folder Links (Links to Google Drive) */
-    .drive-link {
-      color: white;
+    /* Links Section */
+    .links {
       display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      background-color: transparent; /* Remove color */
-      text-decoration: none;
-      border: 2px solid white;
-      border-radius: 8px;
-      height: 120px;
-      font-size: 22px;
-      padding: 15px;
-      box-sizing: border-box;
-      transition: transform 0.2s ease-in-out;
-    }
-
-    .drive-link:hover {
-      transform: scale(1.05);
-    }
-
-    .drive-link i {
-      font-size: 32px;
-      margin-right: 15px;
-    }
-
-    /* Contacts Section Layout */
-    .contacts-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Two items per row */
-      gap: 20px;
+      flex-direction: column;
+      gap: 10px;
       margin-top: 20px;
     }
 
-    .contact {
-      background-color: transparent;
+    .folder {
+      text-decoration: none;
       color: white;
-      padding: 20px;
-      margin: 5px 0;
+      background: #444;
+      padding: 12px 20px;
       border-radius: 8px;
-      border: 2px solid white;
-      font-size: 18px;
+      display: flex;
+      align-items: center;
+      transition: background 0.3s;
+      font-size: 16px;
+    }
+
+    .folder:hover {
+      background: #333;
+    }
+
+    .folder i {
+      margin-right: 10px;
+    }
+
+    /* Contact Groups */
+    .contact-group {
+      background: #444;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 8px;
       cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 2px solid white;
+    }
+
+    .contact-group-content {
+      display: none;
+      margin-top: 10px;
+      padding-left: 15px;
+    }
+
+    .contact {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 5px;
       transition: transform 0.2s ease;
-      text-align: center;
     }
 
     .contact:hover {
       transform: scale(1.05);
+    }
+
+    /* Loading Spinner */
+    .loading-spinner {
+      display: none;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* Responsive Design */
@@ -149,11 +183,6 @@
       #successSection,
       #contactsPage {
         max-width: 100%;
-      }
-
-      /* Adjust grid to 1 column on small screens */
-      .contacts-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -175,86 +204,103 @@
   <!-- Success Section -->
   <div id="successSection">
     <h2>Welcome Mr. Viraj Rajendra Gite</h2>
-    <div class="contacts-grid">
-      <a href="https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing" class="drive-link">
-        <i class="fab fa-google-drive"></i> C.V. Otur
-      </a>
-      <a href="https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing" class="drive-link">
-        <i class="fab fa-google-drive"></i> Important
-      </a>
-      <a href="https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing" class="drive-link">
-        <i class="fab fa-google-drive"></i> Tour
-      </a>
-      <a href="https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing" class="drive-link">
-        <i class="fab fa-google-drive"></i> My Family
-      </a>
-      <!-- New Link to Contacts Page -->
-      <a href="#contactsPage" class="drive-link" onclick="showContacts()">
-        <i class="fas fa-phone"></i> Contacts
-      </a>
+    <div class="drive-folder" onclick="toggleFolder('driveLinksPage')">
+      <span><i class="fab fa-google-drive"></i> My Google Drive </span>
+      <i class="fas fa-chevron-down" id="driveLinksIcon"></i>
+    </div>
+    <div class="drive-folder" onclick="toggleFolder('contactsPage')">
+      <span><i class="fas fa-users"></i> My Contacts</span>
+      <i class="fas fa-chevron-down" id="contactsIcon"></i>
     </div>
     <footer>Created by Mr. Viraj Rajendra Gite</footer>
   </div>
 
-  <!-- Contacts Section -->
+  <!-- Contacts Page -->
   <div id="contactsPage" style="display: none;">
     <h2>Contacts Page</h2>
-    <div class="contacts-grid">
-      <div class="contact" onclick="window.location.href='tel:+919359081125'">Sahil Murade: 9359081125</div>
-      <div class="contact" onclick="window.location.href='tel:+917498062804'">Saiprit Murade: 7498062804</div>
-      <div class="contact" onclick="window.location.href='tel:+919673846464'">Sarthak Khaire: 9673846464</div>
-      <div class="contact" onclick="window.location.href='tel:+917020327222'">Niraj Adsare: 7020327222</div>
-      <div class="contact" onclick="window.location.href='tel:+918010454207'">Sarthak Tambe: 8010454207</div>
-      <div class="contact" onclick="window.location.href='tel:+917498120117'">Swaraj Dhamale: 7498120117</div>
-      <div class="contact" onclick="window.location.href='tel:+919890101845'">Rajendra Gite: 9890101845</div>
-      <div class="contact" onclick="window.location.href='tel:+917756066502'">Archana Gite: 7756066502</div>
-      <div class="contact" onclick="window.location.href='tel:+919860354540'">Mangesh Gite: 9860354540</div>
-      <div class="contact" onclick="window.location.href='tel:+919284120495'">Viraj Gite: 9284120495</div>
+    <!-- Family Group -->
+    <div class="contact-group" onclick="toggleGroup('familyGroup')">
+      <span>Family</span>
+      <i class="fas fa-chevron-down" id="familyGroupIcon"></i>
     </div>
+    <div class="contact-group-content" id="familyGroup">
+      <div class="contact" onclick="window.location.href='tel:+919890101845'"><i class="fas fa-phone"></i> Rajendra Gite: 9890101845</div>
+      <div class="contact" onclick="window.location.href='tel:+919890603513'"><i class="fas fa-phone"></i> Sandip Gite: 9890603513</div>
+      <div class="contact" onclick="window.location.href='tel:+919284120495'"><i class="fas fa-phone"></i> Viraj Gite: 9284120495</div>
+      <div class="contact" onclick="window.location.href='tel:+917756066502'"><i class="fas fa-phone"></i> Archana Gite: 7756066502</div>
+      <div class="contact" onclick="window.location.href='tel:+919860354540'"><i class="fas fa-phone"></i> Mangesh Gite: 9860354540</div>
+      <div class="contact" onclick="window.location.href='tel:+919075307107'"><i class="fas fa-phone"></i> Sayali Gite: 9075307107</div>
+    </div>
+
+    <!-- Friends Group -->
+    <div class="contact-group" onclick="toggleGroup('friendsGroup')">
+      <span>Friends</span>
+      <i class="fas fa-chevron-down" id="friendsGroupIcon"></i>
+    </div>
+    <div class="contact-group-content" id="friendsGroup">
+      <div class="contact" onclick="window.location.href='tel:+919352848541'"><i class="fas fa-phone"></i> Sahil Murade (Tab): 9352848541</div>
+      <div class="contact" onclick="window.location.href='tel:+919352848541'"><i class="fas fa-phone"></i> Sahil Murade (Home): 9352848541</div>
+      <div class="contact" onclick="window.location.href='tel:+917517823092'"><i class="fas fa-phone"></i> Saiprit Murade (Tab): 7517823092</div>
+      <div class="contact" onclick="window.location.href='tel:+917517823092'"><i class="fas fa-phone"></i> Saiprit Murade (Home): 7517823092</div>
+      <div class="contact" onclick="window.location.href='tel:+919673846464'"><i class="fas fa-phone"></i> Sarthak Khaire (Tab): 9673846464</div>
+      <div class="contact" onclick="window.location.href='tel:+917020327222'"><i class="fas fa-phone"></i> Niraj Adsare (Tab): 7020327222</div>
+      <div class="contact" onclick="window.location.href='tel:+918010454207'"><i class="fas fa-phone"></i> Sarthak Tambe (Tab): 8010454207</div>
+      <div class="contact" onclick="window.location.href='tel:+917498120117'"><i class="fas fa-phone"></i> Swaraj Dhamale (Tab): 7498120117</div>
+    </div>
+
     <button onclick="goBackToSuccess()">Go Back</button>
   </div>
 
   <script>
-    // Updated login credentials
-    const validUsername = "virajgite32@gmail.com";
-    const validPassword = "viraj@234632";
+    // Simulate network delay based on random network speed
+    function simulateNetworkDelay(callback) {
+      // Simulate delay based on random network speed (1-3 seconds)
+      var delay = Math.floor(Math.random() * 3 + 1) * 1000;
+      document.getElementById("loadingSpinner").style.display = "block";
+      setTimeout(function () {
+        document.getElementById("loadingSpinner").style.display = "none";
+        callback();
+      }, delay);
+    }
+
+    // Toggle visibility of contact groups
+    function toggleGroup(groupId) {
+      var groupContent = document.getElementById(groupId);
+      groupContent.style.display = groupContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Toggle visibility of Drive Links and Contacts
+    function toggleFolder(folderId) {
+      simulateNetworkDelay(function () {
+        var folder = document.getElementById(folderId);
+        folder.style.display = folder.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+
+    // Go back to the success page
+    function goBackToSuccess() {
+      document.getElementById('driveLinksPage').style.display = 'none';
+      document.getElementById('contactsPage').style.display = 'none';
+      document.getElementById('successSection').style.display = 'flex';
+    }
 
     // Handle login form submission
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent form from submitting
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+    document.getElementById('loginForm').onsubmit = function (e) {
+      e.preventDefault();
 
-      if (username === validUsername && password === validPassword) {
-        // Successful login
-        localStorage.setItem('loggedIn', 'true');  // Save login state in localStorage
-        document.getElementById("loginSection").style.display = "none";
-        document.getElementById("successSection").style.display = "block";
+      // Here, you can replace with actual login validation logic
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      if (username === "virajgite32@gmail.com" && password === "viraj@234632") {
+        // Simulate a successful login and display success section
+        document.getElementById('loginSection').style.display = 'none';
+        document.getElementById('successSection').style.display = 'flex';
       } else {
-        // Invalid login credentials
-        document.getElementById("loginMessage").style.display = "block";
+        document.getElementById('loginMessage').style.display = 'block';
       }
-    });
-
-    // Check if the user is already logged in (on page load)
-    if (localStorage.getItem('loggedIn') === 'true') {
-      document.getElementById("loginSection").style.display = "none";
-      document.getElementById("successSection").style.display = "block";
-    }
-
-    // Function to show contacts page
-    function showContacts() {
-      document.getElementById("contactsPage").style.display = "block";
-      document.getElementById("successSection").style.display = "none";
-    }
-
-    // Function to go back to success page
-    function goBackToSuccess() {
-      document.getElementById("contactsPage").style.display = "none";
-      document.getElementById("successSection").style.display = "block";
-    }
+    };
   </script>
 </body>
 
 </html>
-
