@@ -204,10 +204,22 @@
   <!-- Success Section -->
   <div id="successSection">
     <h2>Welcome Mr. Viraj Rajendra Gite</h2>
-    <div class="drive-folder" onclick="toggleFolder('contactsPage')">
-      <span><i class="fas fa-users"></i> My Contacts</span>
-      <i class="fas fa-chevron-down" id="contactsIcon" aria-label="Toggle contacts page"></i>
+
+    <div class="links">
+      <a class="folder" href="https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing">
+        <i class="fab fa-google-drive"></i> C.V. Otur
+      </a>
+      <a class="folder" href="https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing">
+        <i class="fab fa-google-drive"></i> Important
+      </a>
+      <a class="folder" href="https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing">
+        <i class="fab fa-google-drive"></i> Tour
+      </a>
+      <a class="folder" href="https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing">
+        <i class="fab fa-google-drive"></i> My Family
+      </a>
     </div>
+
     <footer>Created by Mr. Viraj Rajendra Gite</footer>
   </div>
 
@@ -247,9 +259,6 @@
     <button onclick="goBackToSuccess()">Go Back</button>
   </div>
 
-  <!-- Loading Spinner -->
-  <div class="loading-spinner" id="loadingSpinner"></div>
-
   <script>
     // Simulate network delay based on random network speed
     function simulateNetworkDelay(callback) {
@@ -267,14 +276,6 @@
       groupContent.style.display = groupContent.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Toggle visibility of Drive Links and Contacts
-    function toggleFolder(folderId) {
-      simulateNetworkDelay(function () {
-        var folder = document.getElementById(folderId);
-        folder.style.display = folder.style.display === 'none' ? 'block' : 'none';
-      });
-    }
-
     // Go back to the success page
     function goBackToSuccess() {
       document.getElementById('contactsPage').style.display = 'none';
@@ -289,6 +290,7 @@
       var password = document.getElementById('password').value;
 
       if (username === "virajgite32@gmail.com" && password === "viraj@234632") {
+        // Simulate a successful login and display success section
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('successSection').style.display = 'flex';
       } else {
