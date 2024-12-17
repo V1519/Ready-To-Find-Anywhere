@@ -204,13 +204,9 @@
   <!-- Success Section -->
   <div id="successSection">
     <h2>Welcome Mr. Viraj Rajendra Gite</h2>
-    <div class="drive-folder" onclick="toggleFolder('driveLinksPage')">
-      <span><i class="fab fa-google-drive"></i> My Google Drive </span>
-      <i class="fas fa-chevron-down" id="driveLinksIcon"></i>
-    </div>
     <div class="drive-folder" onclick="toggleFolder('contactsPage')">
       <span><i class="fas fa-users"></i> My Contacts</span>
-      <i class="fas fa-chevron-down" id="contactsIcon"></i>
+      <i class="fas fa-chevron-down" id="contactsIcon" aria-label="Toggle contacts page"></i>
     </div>
     <footer>Created by Mr. Viraj Rajendra Gite</footer>
   </div>
@@ -251,10 +247,12 @@
     <button onclick="goBackToSuccess()">Go Back</button>
   </div>
 
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loadingSpinner"></div>
+
   <script>
     // Simulate network delay based on random network speed
     function simulateNetworkDelay(callback) {
-      // Simulate delay based on random network speed (1-3 seconds)
       var delay = Math.floor(Math.random() * 3 + 1) * 1000;
       document.getElementById("loadingSpinner").style.display = "block";
       setTimeout(function () {
@@ -279,7 +277,6 @@
 
     // Go back to the success page
     function goBackToSuccess() {
-      document.getElementById('driveLinksPage').style.display = 'none';
       document.getElementById('contactsPage').style.display = 'none';
       document.getElementById('successSection').style.display = 'flex';
     }
@@ -288,12 +285,10 @@
     document.getElementById('loginForm').onsubmit = function (e) {
       e.preventDefault();
 
-      // Here, you can replace with actual login validation logic
       var username = document.getElementById('username').value;
       var password = document.getElementById('password').value;
 
       if (username === "virajgite32@gmail.com" && password === "viraj@234632") {
-        // Simulate a successful login and display success section
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('successSection').style.display = 'flex';
       } else {
