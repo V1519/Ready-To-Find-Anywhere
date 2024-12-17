@@ -205,7 +205,12 @@
   <div id="successSection">
     <h2>Welcome Mr. Viraj Rajendra Gite</h2>
 
-    <div class="links">
+    <!-- My Drive Folder Section -->
+    <div class="folder" onclick="toggleFolder('myDriveFolder')">
+      <i class="fas fa-folder"></i> My Drive
+      <i class="fas fa-chevron-down" id="myDriveIcon"></i>
+    </div>
+    <div class="folder" id="myDriveFolder" style="display: none; padding-left: 20px;">
       <a class="folder" href="https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing">
         <i class="fab fa-google-drive"></i> C.V. Otur
       </a>
@@ -218,6 +223,12 @@
       <a class="folder" href="https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing">
         <i class="fab fa-google-drive"></i> My Family
       </a>
+    </div>
+
+    <!-- Contacts Folder -->
+    <div class="folder" onclick="toggleFolder('contactsPage')">
+      <i class="fas fa-users"></i> Contacts
+      <i class="fas fa-chevron-down" id="contactsIcon"></i>
     </div>
 
     <footer>Created by Mr. Viraj Rajendra Gite</footer>
@@ -235,9 +246,8 @@
       <div class="contact" onclick="window.location.href='tel:+919890101845'"><i class="fas fa-phone"></i> Rajendra Gite: 9890101845</div>
       <div class="contact" onclick="window.location.href='tel:+919890603513'"><i class="fas fa-phone"></i> Sandip Gite: 9890603513</div>
       <div class="contact" onclick="window.location.href='tel:+919284120495'"><i class="fas fa-phone"></i> Viraj Gite: 9284120495</div>
+      <div class="contact" onclick="window.location.href='tel:+917756066401'"><i class="fas fa-phone"></i> Sayali Gite: 9075307107</div>
       <div class="contact" onclick="window.location.href='tel:+917756066502'"><i class="fas fa-phone"></i> Archana Gite: 7756066502</div>
-      <div class="contact" onclick="window.location.href='tel:+919860354540'"><i class="fas fa-phone"></i> Mangesh Gite: 9860354540</div>
-      <div class="contact" onclick="window.location.href='tel:+919075307107'"><i class="fas fa-phone"></i> Sayali Gite: 9075307107</div>
     </div>
 
     <!-- Friends Group -->
@@ -259,6 +269,9 @@
     <button onclick="goBackToSuccess()">Go Back</button>
   </div>
 
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loadingSpinner"></div>
+
   <script>
     // Simulate network delay based on random network speed
     function simulateNetworkDelay(callback) {
@@ -274,6 +287,14 @@
     function toggleGroup(groupId) {
       var groupContent = document.getElementById(groupId);
       groupContent.style.display = groupContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Toggle visibility of Folders
+    function toggleFolder(folderId) {
+      simulateNetworkDelay(function () {
+        var folder = document.getElementById(folderId);
+        folder.style.display = folder.style.display === 'none' ? 'block' : 'none';
+      });
     }
 
     // Go back to the success page
