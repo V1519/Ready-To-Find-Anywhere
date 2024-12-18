@@ -18,9 +18,7 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    /* General Reset and Styles */
-    
-  * {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -37,171 +35,45 @@
       padding-bottom: 50px;
     }
 
-    /* Container for login form, success page, and contacts page */
     .container {
       width: 100%;
       max-width: 960px;
-      margin: 0 auto;
-      padding: 40px;
+      padding: 20px;
       text-align: center;
     }
 
-    /* Styled success section */
     #successSection {
       display: none;
       background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
+      padding: 20px;
       border-radius: 15px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-      color: #fff;
-    }
-
-    #successSection h2 {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       color: #333;
     }
 
-    .drive-folder,
-    .contact-group {
-      background: rgba(255, 255, 255, 0.2);
-      margin: 10px 0;
-      padding: 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .drive-folder:hover,
-    .contact-group:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    .drive-folder span,
-    .contact-group span {
-      font-size: 18px;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .contact-group-content {
-      display: none;
-      margin-top: 10px;
-      padding-left: 20px;
-    }
-
-    .contact {
-      margin: 5px 0;
-      font-size: 16px;
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-    }
-
-    .contact i {
-      margin-right: 10px;
-    }
-
-    /* Styled Go Back button */
-    .go-back-btn {
-      padding: 12px 20px;
-      background-color: #00d4ff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
-
-    .go-back-btn:hover {
-      background-color: #00a0b3;
-    }
-
-    /* Contact page styling */
     #contactsPage {
       display: none;
       background: rgba(255, 255, 255, 0.1);
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-      color: #fff;
-    }
-
-    #contactsPage h2 {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       color: #333;
     }
 
-    /* Login message styles */
-    #loginMessage {
-      display: none;
-      color: red;
-      margin-top: 10px;
-    }
-
-    footer {
-      margin-top: 30px;
-      text-align: center;
-      font-size: 14px;
+    a.drive-link {
+      margin: 8px 0;
       color: #333;
-      font-weight: normal;
-    }
-
-    /* Drive Links section */
-    .drive-link {
-      background: rgba(255, 255, 255, 0.2);
-      margin: 5px 0;
-      padding: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .drive-link:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    .drive-link a {
-      color: #fff;
       font-size: 16px;
-      font-weight: bold;
       text-decoration: none;
     }
 
-    .drive-link a:hover {
-      text-decoration: underline;
-    }
-
-    .links {
-      margin-top: 20px;
-    }
-
-    .folder {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px 0;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 12px;
-      border-radius: 8px;
+    .go-back-btn {
+      padding: 10px 20px;
+      background: #00d4ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .folder:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    .folder i {
-      margin-right: 10px;
     }
   </style>
 </head>
@@ -209,121 +81,75 @@
 <body>
   <div class="container">
     <!-- Login Section -->
-    <div id="loginSection" class="login-container">
-      <h2>Ready To Find Here</h2>
+    <div id="loginSection">
+      <h2>Login</h2>
       <form id="loginForm">
-        <input type="text" id="username" class="input-field" placeholder="Enter your username" required />
-        <input type="password" id="password" class="input-field" placeholder="Enter your password" required />
-        <button type="submit" class="submit-btn">Login</button>
-        <p id="loginMessage" class="login-message">Invalid Username or Password.</p>
+        <input type="text" id="username" placeholder="Enter your username" required />
+        <input type="password" id="password" placeholder="Enter your password" required />
+        <button type="submit">Login</button>
+        <p id="loginMessage" style="color: red; display: none;">Invalid Username or Password.</p>
       </form>
     </div>
 
     <!-- Success Section -->
     <div id="successSection">
       <h2>Welcome Mr. Viraj Rajendra Gite</h2>
-      <div class="drive-folder" onclick="toggleFolder('driveLinksPage')">
-        <span><i class="fab fa-google-drive"></i> My Google Drive </span>
-        <i class="fas fa-chevron-down" id="driveLinksIcon"></i>
+      <div onclick="toggleFolder('driveLinksPage')">
+        <span><i class="fab fa-google-drive"></i> My Google Drive Links</span>
       </div>
-      <div class="drive-folder" onclick="toggleFolder('contactsPage')">
-        <span><i class="fas fa-users"></i> My Contacts</span>
-        <i class="fas fa-chevron-down" id="contactsIcon"></i>
+      <div onclick="toggleFolder('contactsPage')">
+        <span><i class="fas fa-users"></i> Contacts</span>
       </div>
     </div>
 
-    <!-- Drive Links Section -->
+    <!-- Google Drive Links Section -->
     <div id="driveLinksPage" style="display: none;">
       <h2>Google Drive Links</h2>
-      <div class="links">
-        <a class="folder" href="https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing" target="_blank">
-          <i class="fab fa-google-drive"></i> C.V. Otur
-        </a>
-        <a class="folder" href="https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing" target="_blank">
-          <i class="fab fa-google-drive"></i> Important
-        </a>
-        <a class="folder" href="https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing" target="_blank">
-          <i class="fab fa-google-drive"></i> Tour
-        </a>
-        <a class="folder" href="https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing" target="_blank">
-          <i class="fab fa-google-drive"></i> My Family
-        </a>
-        <a class="folder" href="https://drive.google.com/drive/mobile/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh" target="_blank">
-          <i class="fab fa-google-drive"></i> Solo Leveling Manga
-        </a>
-      </div>
+      <a class="drive-link" href="https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing" target="_blank">C.V. Otur</a>
+      <a class="drive-link" href="https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing" target="_blank">Important</a>
+      <a class="drive-link" href="https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing" target="_blank">Tour</a>
+      <a class="drive-link" href="https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing" target="_blank">My Family</a>
+      <a class="drive-link" href="https://drive.google.com/drive/mobile/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh" target="_blank">Solo Leveling Manga</a>
     </div>
 
-    <!-- Contacts Section -->
+    <!-- Contacts Page Section -->
     <div id="contactsPage">
       <h2>Contacts</h2>
-      <div class="contact-group" onclick="toggleGroup('familyGroup')" aria-label="Toggle Family Contacts">
-        <span>Family</span>
-        <i class="fas fa-chevron-down" id="familyGroupIcon"></i>
-      </div>
-      <div class="contact-group-content" id="familyGroup">
-        <div class="contact" onclick="window.location.href='tel:+919890101845'"><i class="fas fa-phone"></i> Rajendra Gite: +919890101845</div>
-        <div class="contact" onclick="window.location.href='tel:+919890603513'"><i class="fas fa-phone"></i> Sandip Gite: +919890603513</div>
-        <div class="contact" onclick="window.location.href='tel:+919284120495'"><i class="fas fa-phone"></i> Viraj Gite: +919284120495</div>
-        <div class="contact" onclick="window.location.href='tel:+917756066502'"><i class="fas fa-phone"></i> Archana Gite: +917756066502</div>
-        <div class="contact" onclick="window.location.href='tel:+919860354540'"><i class="fas fa-phone"></i> Mangesh Gite: +919860354540</div>
-        <div class="contact" onclick="window.location.href='tel:+919075307107'"><i class="fas fa-phone"></i> Sayali Gite: +919075307107</div>
-        <div class="contact" onclick="window.location.href='tel:+919404684107'"><i class="fas fa-phone"></i> Rajendra Gite (2nd number): +919404684107</div>
-      </div>
-
-      <div class="contact-group" onclick="toggleGroup('friendsGroup')" aria-label="Toggle Friends Contacts">
-        <span>Friends</span>
-        <i class="fas fa-chevron-down" id="friendsGroupIcon"></i>
-      </div>
-      <div class="contact-group-content" id="friendsGroup">
-        <div class="contact" onclick="window.location.href='tel:+918010454207'"><i class="fas fa-phone"></i> Sarthak Tambe: +918010454207</div>
-        <div class="contact" onclick="window.location.href='tel:+917498062804'"><i class="fas fa-phone"></i> Saiprit Murade (Tab): +917498062804</div>
-        <div class="contact" onclick="window.location.href='tel:+919359081125'"><i class="fas fa-phone"></i> Sahil Murade (Tab): +919359081125</div>
-        <div class="contact" onclick="window.location.href='tel:+919673846464'"><i class="fas fa-phone"></i> Sarthak Khaire (Tab): +919673846464</div>
-        <div class="contact" onclick="window.location.href='tel:+917020327222'"><i class="fas fa-phone"></i> Niraj Adsare (Tab): +917020327222</div>
-        <div class="contact" onclick="window.location.href='tel:+917498120117'"><i class="fas fa-phone"></i> Swaraj Dhamale (Tab): +917498120117</div>
-        <div class="contact" onclick="window.location.href='tel:+919552848541'"><i class="fas fa-phone"></i> Sahil Murade (Home): +919552848541</div>
-        <div class="contact" onclick="window.location.href='tel:+917517823092'"><i class="fas fa-phone"></i> Saiprit Murade (Home): +917517823092</div>
-      </div>
-
+      <div onclick="window.location.href='tel:+919890101845'">Rajendra Gite: +919890101845</div>
+      <div onclick="window.location.href='tel:+919890603513'">Sandip Gite: +919890603513</div>
+      <div onclick="window.location.href='tel:+919284120495'">Viraj Gite: +919284120495</div>
+      <div onclick="window.location.href='tel:+917756066502'">Archana Gite: +917756066502</div>
+      <div onclick="window.location.href='tel:+919860354540'">Mangesh Gite: +919860354540</div>
+      <div onclick="window.location.href='tel:+919075307107'">Sayali Gite: +919075307107</div>
+      <div onclick="window.location.href='tel:+919404684107'">Rajendra Gite (2nd number): +919404684107</div>
+      <div onclick="window.location.href='tel:+918010454207'">Sarthak Tambe: +918010454207</div>
+      <div onclick="window.location.href='tel:+917498062804'">Saiprit Murade (Tab): +917498062804</div>
+      <div onclick="window.location.href='tel:+919359081125'">Sahil Murade (Tab): +919359081125</div>
+      <div onclick="window.location.href='tel:+919673846464'">Sarthak Khaire (Tab): +919673846464</div>
+      <div onclick="window.location.href='tel:+917020327222'">Niraj Adsare (Tab): +917020327222</div>
+      <div onclick="window.location.href='tel:+917498120117'">Swaraj Dhamale (Tab): +917498120117</div>
+      <div onclick="window.location.href='tel:+919552848541'">Sahil Murade (Home): +919552848541</div>
+      <div onclick="window.location.href='tel:+917517823092'">Saiprit Murade (Home): +917517823092</div>
       <button class="go-back-btn" onclick="goBack()">Go Back</button>
     </div>
   </div>
 
-  <footer>
-    <p>2024 © Ready To Find Here. All rights reserved.</p>
-  </footer>
-
   <script>
-    // Toggle function for folder and group visibility
     function toggleFolder(id) {
-      var folder = document.getElementById(id);
-      if (folder.style.display === 'none' || folder.style.display === '') {
-        folder.style.display = 'block';
-      } else {
-        folder.style.display = 'none';
-      }
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === 'block' ? 'none' : 'block';
     }
 
-    function toggleGroup(id) {
-      var group = document.getElementById(id);
-      var icon = document.getElementById(id + 'Icon');
-      if (group.style.display === 'none' || group.style.display === '') {
-        group.style.display = 'block';
-        icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-      } else {
-        group.style.display = 'none';
-        icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-      }
+    function goBack() {
+      document.getElementById('contactsPage').style.display = 'none';
+      document.getElementById('successSection').style.display = 'block';
     }
 
-    // Handling login form
     document.getElementById('loginForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      var username = document.getElementById('username').value;
-      var password = document.getElementById('password').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-      // Validating login credentials (simple demo)
       if (username === 'virajgite32@gmail.com' && password === 'viraj@234632') {
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('successSection').style.display = 'block';
@@ -331,12 +157,6 @@
         document.getElementById('loginMessage').style.display = 'block';
       }
     });
-
-    // Go back to the success page
-    function goBack() {
-      document.getElementById('contactsPage').style.display = 'none';
-      document.getElementById('successSection').style.display = 'block';
-    }
   </script>
 </body>
 
