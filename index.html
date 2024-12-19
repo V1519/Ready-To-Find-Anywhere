@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ready To Find Here</title>
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2T91XQ8C1K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -15,7 +14,6 @@
     gtag('js', new Date());
     gtag('config', 'G-2T91XQ8C1K');
   </script>
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
     * {
@@ -42,7 +40,6 @@
       text-align: left;
     }
 
-    /* Login Section */
     #loginSection {
       width: 100%;
       max-width: 400px;
@@ -90,7 +87,6 @@
       margin-top: 10px;
     }
 
-    /* Success Section */
     #successSection {
       display: none;
       background: rgba(255, 255, 255, 0.9);
@@ -100,10 +96,6 @@
       color: #333;
       width: 100%;
       max-width: 600px;
-    }
-
-    #successSection h2 {
-      font-size: 24px;
     }
 
     .folder {
@@ -120,22 +112,6 @@
 
     .folder:hover {
       background: #0086b3;
-    }
-
-    .links a.folder {
-      display: block;
-      margin: 8px 0;
-      color: #333;
-      font-size: 16px;
-      text-decoration: none;
-      padding: 8px;
-      background-color: #00d4ff;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    .links a.folder:hover {
-      background-color: #0086b3;
     }
 
     .contacts-list div {
@@ -170,6 +146,31 @@
 
     .go-back-btn:hover {
       background: #0086b3;
+    }
+
+    #loadingSpinner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      display: none;
+      z-index: 9999;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     @media screen and (max-width: 768px) {
@@ -226,6 +227,7 @@
       <div onclick="toggleSubFolder('myFriendsGroup')" class="folder">My Friends</div>
       <div id="myFriendsGroup" style="display: none;" class="contacts-list">
         <div onclick="window.location.href='tel:+918010454207'">Sarthak Tambe (Tab): +918010454207</div>
+        <div onclick="window.location.href='tel:+918208156651'">Sarthak Tambe (Home): +918208156651</div>
         <div onclick="window.location.href='tel:+917498062804'">Saiprit Murade (Tab): +917498062804</div>
         <div onclick="window.location.href='tel:+919359081125'">Sahil Murade (Tab): +919359081125</div>
         <div onclick="window.location.href='tel:+919673846464'">Sarthak Khaire (Tab): +919673846464</div>
@@ -233,6 +235,7 @@
         <div onclick="window.location.href='tel:+917498120117'">Swaraj Dhamale (Tab): +917498120117</div>
         <div onclick="window.location.href='tel:+919552848541'">Sahil Murade (Home): +919552848541</div>
         <div onclick="window.location.href='tel:+917756066502'">Saiprit Murade (Home): +917756066502</div>
+        <div onclick="window.location.href='tel:+919699441487'">Prajwal Sabale (Home): +919699441487</div>
       </div>
 
       <div onclick="toggleSubFolder('myFamilyGroup')" class="folder">My Family Contacts</div>
@@ -246,6 +249,7 @@
         <div onclick="window.location.href='tel:+919075307107'">Sayali Gite: +919075307107</div>
         <div onclick="window.location.href='tel:+919130383513'">Sarthak Gite: +919130383513</div>
       </div>
+
       <button class="go-back-btn" onclick="goBack()">Go Back</button>
     </div>
 
@@ -253,62 +257,55 @@
     <div id="driveLinksPage" style="display: none;">
       <h2>Google Drive Links</h2>
       <div class="links">
-        <a class="folder" href="#" onclick="loadDriveLink('https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing')">
-          <i class="fab fa-google-drive"></i>C.V.Otur
-        </a>
-        <a class="folder" href="#" onclick="loadDriveLink('https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing')">
-          <i class="fab fa-google-drive"></i> Important
-        </a>
-        <a class="folder" href="#" onclick="loadDriveLink('https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing')">
-          <i class="fab fa-google-drive"></i> Tour
-        </a>
-        <a class="folder" href="#" onclick="loadDriveLink('https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing')">
-          <i class="fab fa-google-drive"></i> My Family
-        </a>
-        <a class="folder" href="#" onclick="loadDriveLink('https://drive.google.com/drive/mobile/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh')">
-          <i class="fab fa-google-drive"></i> Solo Leveling Manga
-        </a>
+        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing')">C.V. Otur</a>
+        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing')">Important</a>
+        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing')">Tour</a>
+        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing')">My Family</a>
+        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/mobile/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh')">Solo Leveling Manga</a>
       </div>
       <button class="go-back-btn" onclick="goBack()">Go Back</button>
     </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner"></div>
   </div>
 
   <script>
+    const validUsername = "virajgite32@gmail.com";
+    const validPassword = "viraj@234632";
+
+    document.getElementById("loginForm").onsubmit = function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      if (!username || !password) {
+        document.getElementById("loginMessage").textContent = "Both fields are required.";
+        document.getElementById("loginMessage").style.display = "block";
+      } else if (username === validUsername && password === validPassword) {
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("successSection").style.display = "block";
+      } else {
+        document.getElementById("loginMessage").style.display = "block";
+      }
+    };
+
     function toggleFolder(id) {
-      const el = document.getElementById(id);
-      const sections = document.querySelectorAll('#successSection, #contactsPage, #driveLinksPage');
-      sections.forEach(section => section.style.display = 'none');
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function toggleSubFolder(id) {
-      const el = document.getElementById(id);
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function loadDriveLink(url) {
-      // Open the URL in a new tab/window
-      window.open(url, '_blank');
+      document.getElementById(id).style.display = document.getElementById(id).style.display === "none" ? "block" : "none";
     }
 
     function goBack() {
-      const sections = document.querySelectorAll('#contactsPage, #driveLinksPage');
-      sections.forEach(section => section.style.display = 'none');
-      document.getElementById('successSection').style.display = 'block';
+      document.getElementById("contactsPage").style.display = "none";
+      document.getElementById("driveLinksPage").style.display = "none";
+      document.getElementById("successSection").style.display = "block";
     }
 
-    document.getElementById('loginForm').addEventListener('submit', function (event) {
-      event.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      if (username === 'virajgite32@gmail.com' && password === 'viraj@234632') {
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('successSection').style.display = 'block';
-      } else {
-        document.getElementById('loginMessage').style.display = 'block';
-      }
-    });
+    function loadDriveLink(link) {
+      document.getElementById("loadingSpinner").style.display = "block";
+      setTimeout(function () {
+        window.location.href = link;
+        document.getElementById("loadingSpinner").style.display = "none";
+      }, 1000);
+    }
   </script>
 </body>
 
