@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -82,6 +81,12 @@
     }
 
     #loginMessage {
+      color: red;
+      display: none;
+      margin-top: 10px;
+    }
+
+    #loginBlockMessage {
       color: red;
       display: none;
       margin-top: 10px;
@@ -207,6 +212,7 @@
         <input type="password" id="password" placeholder="Enter your password" required />
         <button type="submit">Login</button>
         <p id="loginMessage">Invalid Username or Password.</p>
+        <p id="loginBlockMessage">You have been blocked due to too many failed attempts. Please try again after 1 hour.</p>
       </form>
     </div>
 
@@ -257,11 +263,11 @@
     <div id="driveLinksPage" style="display: none;">
       <h2>Google Drive Links</h2>
       <div class="links">
-        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing')">C.V. Otur</a>
-        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing')">Important</a>
-        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing')">Tour</a>
-        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing')">My Family</a>
-        <a href="javascript:void(0)" onclick="loadDriveLink('https://drive.google.com/drive/mobile/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh')">Solo Leveling Manga</a>
+        <a href="javascript:void(0)" class="folder" onclick="loadDriveLink('https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing')">C.V. Otur</a>
+        <a href="javascript:void(0)" class="folder" onclick="loadDriveLink('https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing')">Important</a>
+        <a href="javascript:void(0)" class="folder" onclick="loadDriveLink('https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing')">Tour</a>
+        <a href="javascript:void(0)" class="folder" onclick="loadDriveLink('https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing')">My Family</a>
+        <a href="javascript:void(0)" class="folder" onclick="loadDriveLink('https://drive.google.com/drive/mobile/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh')">Solo Leveling Manga</a>
       </div>
       <button class="go-back-btn" onclick="goBack()">Go Back</button>
     </div>
@@ -273,24 +279,50 @@
   <script>
     const validUsername = "virajgite32@gmail.com";
     const validPassword = "viraj@234632";
+    let attempts = 0;
+    let blockTime = 0; // In seconds
 
     document.getElementById("loginForm").onsubmit = function (e) {
       e.preventDefault();
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
-      if (!username || !password) {
-        document.getElementById("loginMessage").textContent = "Both fields are required.";
-        document.getElementById("loginMessage").style.display = "block";
-      } else if (username === validUsername && password === validPassword) {
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      // Check if the user is blocked
+      if (blockTime > 0 && currentTime < blockTime) {
+        const remainingTime = blockTime - currentTime;
+        document.getElementById("loginBlockMessage").textContent = `You have been blocked. Try again in ${Math.ceil(remainingTime / 60)} minutes.`;
+        document.getElementById("loginBlockMessage").style.display = "block";
+        return;
+      }
+
+      // Reset the block time if it expired
+      if (currentTime >= blockTime) {
+        blockTime = 0;
+      }
+
+      // Check if the username and password match
+      if (username === validUsername && password === validPassword) {
         document.getElementById("loginSection").style.display = "none";
         document.getElementById("successSection").style.display = "block";
+        attempts = 0; // Reset attempts on successful login
       } else {
+        attempts++;
         document.getElementById("loginMessage").style.display = "block";
+
+        if (attempts >= 5) {
+          // Block the user for 1 hour
+          blockTime = currentTime + 3600;
+          document.getElementById("loginBlockMessage").textContent = "Too many failed attempts. Please try again after 1 hour.";
+          document.getElementById("loginBlockMessage").style.display = "block";
+          document.getElementById("loginMessage").style.display = "none";
+        }
       }
     };
 
     function toggleFolder(id) {
-      document.getElementById(id).style.display = document.getElementById(id).style.display === "none" ? "block" : "none";
+      document.getElementById(id).style.display =
+        document.getElementById(id).style.display === "none" ? "block" : "none";
     }
 
     function goBack() {
@@ -306,7 +338,11 @@
         document.getElementById("loadingSpinner").style.display = "none";
       }, 1000);
     }
+
+    function toggleSubFolder(id) {
+      document.getElementById(id).style.display =
+        document.getElementById(id).style.display === "none" ? "block" : "none";
+    }
   </script>
 </body>
-
 </html>
