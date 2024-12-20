@@ -29,7 +29,8 @@
             background-color: #1f1f1f;
             padding: 20px;
             border-radius: 8px;
-            width: 300px;
+            width: 80%;
+            max-width: 800px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
@@ -88,16 +89,20 @@
             margin: 10px 0;
             cursor: pointer;
             background-color: #333;
-            padding: 12px;
+            padding: 15px;
             border-radius: 5px;
             transition: background-color 0.3s;
             text-align: left;
-            width: 100%;
-            box-sizing: border-box;
+            display: flex;
+            align-items: center;
         }
 
         .folder:hover {
             background-color: #444;
+        }
+
+        .folder i {
+            margin-right: 10px;
         }
 
         .contacts-list, .drive-links {
@@ -115,8 +120,6 @@
             background-color: #333;
             border-radius: 5px;
             transition: background-color 0.3s;
-            width: 100%;
-            box-sizing: border-box;
         }
 
         .contacts-list div:hover, .drive-links a:hover {
@@ -144,25 +147,11 @@
             background-color: #444;
         }
 
-        /* Additional styling for folder icon alignment */
-        .folder i {
-            margin-right: 10px;
-        }
-
-        /* Consistent folder size for "My Contacts", "My Family", "My Friends", and "My Drive" subfolders */
-        .contacts-list div, .drive-links a, .folder {
-            margin: 10px 0;
-            cursor: pointer;
-            font-size: 16px;
-            display: block;
-            padding: 12px;
-            background-color: #333;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        /* Adjust folder size to be consistent across all folders (Contacts and Drive) */
+        .folder, .contacts-list div, .drive-links a {
             width: 100%;
-            box-sizing: border-boxdisplay: none;
-            margin-left: 20px;
-            text-align: left;
+            padding: 15px;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -186,7 +175,7 @@
 
     <!-- Home Page After Successful Login -->
     <div id="homePage" class="home-container">
-        <h1>Welcome back Mr.Viraj Rajendra Gite!</h1>
+        <h1>Welcome Back Mr.Viraj Rajendra Gite!</h1>
         <div class="container">
             <!-- Main Folder: My Contacts with Phone Icon -->
             <div ondblclick="toggleSubFolder('myContactsGroup')" class="folder">
@@ -211,7 +200,7 @@
                     <div ondblclick="window.location.href='tel:+917498120117'"><i class="fas fa-phone"></i> Swaraj Dhamale (Tab): +917498120117</div>
                 </div>
 
-                <!-- Subfolder: My Family -->
+                <!-- Subfolder: My Family (Moved under My Contacts) -->
                 <div ondblclick="toggleSubFolder('myFamilyGroup')" class="folder">
                     <i class="fas fa-phone"></i> My Family
                 </div>
@@ -229,58 +218,69 @@
 
             <!-- Google Drive Links -->
             <div ondblclick="toggleSubFolder('driveLinks')" class="folder">
-                <i class="fab fa-google-drive"></i> My Drive Folders
+                <i class="fab fa-google-drive"></i> My Drive 
             </div>
             <div id="driveLinks" class="drive-links">
-                <a ondblclick="window.open('https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing')">
+                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing'">
                     <i class="fab fa-google-drive"></i> C.V. Otur
                 </a>
-                <a ondblclick="window.open('https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing')">
+                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing'">
                     <i class="fab fa-google-drive"></i> Important
                 </a>
-                <a ondblclick="window.open('https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing')">
+                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing'">
                     <i class="fab fa-google-drive"></i> Tour
                 </a>
-                <a ondblclick="window.open('https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing')">
+                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing'">
                     <i class="fab fa-google-drive"></i> My Family
                 </a>
-                <a ondblclick="window.open('https://drive.google.com/drive/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh')">
-                    <i class="fab fa-google-drive"></i> Solo Leveling 
+                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh'">
+                    <i class="fab fa-google-drive"></i> Solo Leveling Manga 
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- Go Back Button -->
+    <div id="goBackBtn" class="go-back-btn" onclick="goBack()">
+        Go Back
+    </div>
+
     <script>
         let attempts = 3;
-        const correctUsername = "virajgite32@gmail.com";
-        const correctPassword = "viraj@234632";
-        
+
         function validateLogin(event) {
             event.preventDefault();
-            
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
 
-            if (username === correctUsername && password === correctPassword) {
-                document.getElementById("loginPage").style.display = "none";
-                document.getElementById("homePage").style.display = "block";
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const attemptsLeft = document.getElementById('attemptsLeft');
+
+            // Simulating validation
+            if (username === 'admin' && password === 'password') {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('homePage').style.display = 'block';
             } else {
                 attempts--;
-                document.getElementById("errorMessage").innerText = "Invalid credentials!";
-                document.getElementById("attemptsLeft").innerText = "Attempts left: " + attempts;
-                
-                if (attempts === 0) {
-                    document.getElementById("loginForm").querySelector("button").disabled = true;
+                errorMessage.textContent = 'Invalid username or password.';
+                attemptsLeft.textContent = `Attempts left: ${attempts}`;
+
+                if (attempts <= 0) {
+                    document.getElementById('loginForm').disabled = true;
+                    errorMessage.textContent = 'Too many failed attempts. Please try again later.';
                 }
             }
         }
 
         function toggleSubFolder(id) {
             const folder = document.getElementById(id);
-            folder.style.display = (folder.style.display === "none" || folder.style.display === "") ? "block" : "none";
+            folder.style.display = folder.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function goBack() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
         }
     </script>
-
 </body>
 </html>
