@@ -1,191 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ready To Find Here</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2T91XQ8C1K"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-2T91XQ8C1K');
-    </script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
+            background-color: #2c2c2c;
+            color: #fff;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
-
-        .login-container, .home-container {
-            background-color: #1f1f1f;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 800px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
+            flex-direction: column;
         }
 
         h1 {
-            font-size: 24px;
-        }
-
-        .form-group {
-            margin: 15px 0;
-        }
-
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #333;
-            border: none;
-            border-radius: 5px;
-            color: white;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #444;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
+            color: #fff;
             text-align: center;
         }
 
-        .attempts-left {
-            color: yellow;
-            text-align: center;
-        }
-
-        .home-container {
-            display: none;
+        .container {
             width: 80%;
-            max-width: 800px;
+            max-width: 600px;
+            margin: 20px;
         }
 
         .folder {
-            font-size: 20px;
-            margin: 10px 0;
-            cursor: pointer;
-            background-color: #333;
-            padding: 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            text-align: left;
-            display: flex;
-            align-items: center;
-        }
-
-        .folder:hover {
             background-color: #444;
-        }
-
-        .folder i {
-            margin-right: 10px;
-        }
-
-        .contacts-list, .drive-links {
-            display: none;
-            margin-left: 20px;
-            text-align: left;
-        }
-
-        .contacts-list div, .drive-links a {
+            padding: 10px;
             margin: 10px 0;
             cursor: pointer;
-            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .contacts-list,
+        .drive-links {
+            margin: 10px 0;
+        }
+
+        .contacts-list div,
+        .drive-links a {
+            background-color: #333;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 5px;
             display: block;
-            padding: 12px;
-            background-color: #333;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            color: #fff;
+            text-decoration: none;
         }
 
-        .contacts-list div:hover, .drive-links a:hover {
-            background-color: #444;
-        }
-
-        .contacts-list i, .drive-links i {
+        .contacts-list div i,
+        .drive-links a i {
             margin-right: 10px;
         }
 
         .go-back-btn {
-            background-color: #333;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-top: 20px;
+            background-color: #555;
+            padding: 10px 20px;
+            border: none;
             cursor: pointer;
-            text-align: center;
+            color: #fff;
+            border-radius: 5px;
             display: block;
-            width: 100px;
-            margin: 10px auto;
+            margin: 20px auto;
         }
 
-        .go-back-btn:hover {
-            background-color: #444;
+        #loginSection {
+            display: block;
         }
 
-        /* Adjust folder size to be consistent across all folders (Contacts and Drive) */
-        .folder, .contacts-list div, .drive-links a {
+        #loginMessage,
+        #loginBlockMessage {
+            color: red;
+            display: none;
+        }
+
+        #loginBlockMessage {
+            color: yellow;
+        }
+
+        #loadingSpinner {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #loadingSpinner:before {
+            content: 'Loading...';
+            font-size: 20px;
+        }
+
+        .login-form input {
+            padding: 10px;
+            margin: 10px 0;
             width: 100%;
-            padding: 15px;
-            box-sizing: border-box;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
         }
+
+        .login-form button {
+            padding: 10px 20px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .login-form button:hover {
+            background-color: #555;
+        }
+
     </style>
 </head>
+
 <body>
 
-    <!-- Login Page -->
-    <div id="loginPage" class="login-container">
-        <h1>Ready To Find Here</h1>
-        <form id="loginForm" onsubmit="return validateLogin(event)">
-            <div class="form-group">
+    <h1>Ready To Find Here</h1>
+
+    <div class="container">
+
+        <!-- Login Section -->
+        <div id="loginSection">
+            <div id="loginMessage">Incorrect username or password.</div>
+            <div id="loginBlockMessage">Too many failed attempts. Please try again after 1 hour.</div>
+            <form id="loginForm" class="login-form">
                 <input type="text" id="username" placeholder="Username" required>
-            </div>
-            <div class="form-group">
                 <input type="password" id="password" placeholder="Password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        
+                <button type="submit">Login</button>
+            </form>
+        </div>
 
-    <!-- Home Page After Successful Login -->
-    <div id="homePage" class="home-container">
-        <h1>Welcome Back Mr.Viraj Rajendra Gite !</h1>
-        <div class="container">
-            <!-- Main Folder: My Contacts with Phone Icon -->
-            <div ondblclick="toggleSubFolder('myContactsGroup')" class="folder">
-                <i class="fas fa-phone"></i> My Contacts
-            </div>
+        <!-- Success Section (After Login) -->
+        <div id="successSection">
+            <h2>Welcome Back Mr. Viraj Rajendra Gite!</h2>
 
-            <!-- Subfolder: My Friends -->
-            <div id="myContactsGroup" style="display: none;">
-                <div ondblclick="toggleSubFolder('myFriendsGroup')" class="folder">
-                    <i class="fas fa-phone"></i> My Friends
-                </div>
-                <div id="myFriendsGroup" class="contacts-list">
+            <!-- Contacts Section -->
+            <div id="contactsPage">
+                <h3>My Contacts</h3>
+
+                <!-- Friends Group -->
+                <div ondblclick="toggleFolder('myFriendsGroup')" class="folder">My Friends Contacts</div>
+                <div id="myFriendsGroup" style="display: none;" class="contacts-list">
                     <div ondblclick="window.location.href='tel:+919699441487'"><i class="fas fa-phone"></i> Prajwal Sabale (Home): +919699441487</div>
                     <div ondblclick="window.location.href='tel:+918208156651'"><i class="fas fa-phone"></i> Sarthak Tambe (Home): +918208156651</div>
                     <div ondblclick="window.location.href='tel:+919552848541'"><i class="fas fa-phone"></i> Sahil Murade (Home): +919552848541</div>
@@ -198,11 +163,9 @@
                     <div ondblclick="window.location.href='tel:+917498120117'"><i class="fas fa-phone"></i> Swaraj Dhamale (Tab): +917498120117</div>
                 </div>
 
-                <!-- Subfolder: My Family (Moved under My Contacts) -->
-                <div ondblclick="toggleSubFolder('myFamilyGroup')" class="folder">
-                    <i class="fas fa-phone"></i> My Family
-                </div>
-                <div id="myFamilyGroup" class="contacts-list" style="display: none;">
+                <!-- Family Group -->
+                <div ondblclick="toggleFolder('myFamilyGroup')" class="folder">My Family Contacts</div>
+                <div id="myFamilyGroup" style="display: none;" class="contacts-list">
                     <div ondblclick="window.location.href='tel:+919890101845'"><i class="fas fa-phone"></i> Rajendra Gite: +919890101845</div>
                     <div ondblclick="window.location.href='tel:+919409684107'"><i class="fas fa-phone"></i> Rajendra Gite: +919409684107</div>
                     <div ondblclick="window.location.href='tel:+919890603513'"><i class="fas fa-phone"></i> Sandip Gite: +919890603513</div>
@@ -212,70 +175,74 @@
                     <div ondblclick="window.location.href='tel:+919075307107'"><i class="fas fa-phone"></i> Sayali Gite: +919075307107</div>
                     <div ondblclick="window.location.href='tel:+919130383513'"><i class="fas fa-phone"></i> Sarthak Gite: +919130383513</div>
                 </div>
+
+                <button class="go-back-btn" onclick="goBack()">Go Back</button>
             </div>
 
-            <!-- Google Drive Links -->
-            <div ondblclick="toggleSubFolder('driveLinks')" class="folder">
-                <i class="fab fa-google-drive"></i> My Drive Folders
+            <!-- Drive Links Section -->
+            <div id="driveLinksPage" style="display: none;">
+                <h3>My Google Drive</h3>
+                <div class="drive-links">
+                    <a href="https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing" target="_self">
+                        <i class="fab fa-google-drive"></i> C.V. Otur
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing" target="_self">
+                        <i class="fab fa-google-drive"></i> Important
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoN03u?usp=sharing" target="_self">
+                        <i class="fab fa-google-drive"></i> Tour
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1XpvGr7V8F4--J9mbMz-rDtQITFdwq-o7?usp=sharing" target="_self">
+                        <i class="fab fa-google-drive"></i> My Family
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1CJeGcK9FceJ7p4xlAvszVjruJOLq2ErY?usp=sharing" target="_self">
+                        <i class="fab fa-google-drive"></i> Solo Leveling Manhwa
+                    </a>
+                </div>
+                <button class="go-back-btn" onclick="goBack()">Go Back</button>
             </div>
-            <div id="driveLinks" class="drive-links">
-                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing'">
-                    <i class="fab fa-google-drive"></i> C.V. Otur
-                </a>
-                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing'">
-                    <i class="fab fa-google-drive"></i> Important
-                </a>
-                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing'">
-                    <i class="fab fa-google-drive"></i> Tour
-                </a>
-                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing'">
-                    <i class="fab fa-google-drive"></i> My Family
-                </a>
-                <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh'">
-                    <i class="fab fa-google-drive"></i> Solo Leveling Manga 
-                </a>
-            </div>
+
         </div>
 
-        <div class="go-back-btn" onclick="goBack()">Go Back</div>
     </div>
 
     <script>
-        let remainingAttempts = 3;
+        let attempts = 0;
+        let maxAttempts = 3;
 
-        function validateLogin(event) {
+        // Login form submission
+        document.getElementById("loginForm").onsubmit = function (event) {
             event.preventDefault();
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
 
-            if (username === 'virajgite32@gmail.com' && password === 'viraj@234632') {
-                // Show home page after successful login
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('homePage').style.display = 'block';
+            // Simulate login credentials (replace with actual validation in real use)
+            if (username === "virajgite32@gmail.com" && password === "viraj@234632") {
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("successSection").style.display = "block";
             } else {
-                remainingAttempts--;
-                document.getElementById('errorMessage').textContent = 'Invalid credentials, please try again.';
-                document.getElementById('attemptsLeft').textContent = 'Attempts left: ' + remainingAttempts;
-
-                if (remainingAttempts <= 0) {
-                    alert('Too many failed attempts. Please try again later.');
-                    document.getElementById('loginForm').reset();
+                attempts++;
+                document.getElementById("loginMessage").style.display = "block";
+                if (attempts >= maxAttempts) {
+                    document.getElementById("loginBlockMessage").style.display = "block";
+                    document.getElementById("loginForm").style.display = "none";
                 }
             }
-        }
+        };
 
-        function toggleSubFolder(folderId) {
-            const folder = document.getElementById(folderId);
-            folder.style.display = folder.style.display === 'none' ? 'block' : 'none';
-        }
-
+        // Go back button to previous section
         function goBack() {
-            // Go back to login screen
-            document.getElementById('homePage').style.display = 'none';
-            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById("successSection").style.display = "none";
+            document.getElementById("loginSection").style.display = "block";
+        }
+
+        // Toggle folder visibility
+        function toggleFolder(folderId) {
+            const folder = document.getElementById(folderId);
+            folder.style.display = (folder.style.display === "none" || folder.style.display === "") ? "block" : "none";
         }
     </script>
-
 </body>
+
 </html>
