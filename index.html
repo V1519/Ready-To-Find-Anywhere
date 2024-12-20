@@ -169,13 +169,11 @@
             </div>
             <button type="submit">Login</button>
         </form>
-        <div id="errorMessage" class="error-message"></div>
-        <div id="attemptsLeft" class="attempts-left">Attempts left: 3</div>
-    </div>
+        
 
     <!-- Home Page After Successful Login -->
     <div id="homePage" class="home-container">
-        <h1>Welcome Back Mr.Viraj Rajendra Gite!</h1>
+        <h1>Welcome Back Mr.Viraj Rajendra Gite !</h1>
         <div class="container">
             <!-- Main Folder: My Contacts with Phone Icon -->
             <div ondblclick="toggleSubFolder('myContactsGroup')" class="folder">
@@ -218,7 +216,7 @@
 
             <!-- Google Drive Links -->
             <div ondblclick="toggleSubFolder('driveLinks')" class="folder">
-                <i class="fab fa-google-drive"></i> My Drive 
+                <i class="fab fa-google-drive"></i> My Drive Folders
             </div>
             <div id="driveLinks" class="drive-links">
                 <a ondblclick="window.location.href='https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing'">
@@ -238,49 +236,46 @@
                 </a>
             </div>
         </div>
-    </div>
 
-    <!-- Go Back Button -->
-    <div id="goBackBtn" class="go-back-btn" onclick="goBack()">
-        Go Back
+        <div class="go-back-btn" onclick="goBack()">Go Back</div>
     </div>
 
     <script>
-        let attempts = 3;
+        let remainingAttempts = 3;
 
         function validateLogin(event) {
             event.preventDefault();
 
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-            const attemptsLeft = document.getElementById('attemptsLeft');
 
-            // Simulating validation
-            if (username === 'admin' && password === 'password') {
+            if (username === 'virajgite32@gmail.com' && password === 'viraj@234632') {
+                // Show home page after successful login
                 document.getElementById('loginPage').style.display = 'none';
                 document.getElementById('homePage').style.display = 'block';
             } else {
-                attempts--;
-                errorMessage.textContent = 'Invalid username or password.';
-                attemptsLeft.textContent = `Attempts left: ${attempts}`;
+                remainingAttempts--;
+                document.getElementById('errorMessage').textContent = 'Invalid credentials, please try again.';
+                document.getElementById('attemptsLeft').textContent = 'Attempts left: ' + remainingAttempts;
 
-                if (attempts <= 0) {
-                    document.getElementById('loginForm').disabled = true;
-                    errorMessage.textContent = 'Too many failed attempts. Please try again later.';
+                if (remainingAttempts <= 0) {
+                    alert('Too many failed attempts. Please try again later.');
+                    document.getElementById('loginForm').reset();
                 }
             }
         }
 
-        function toggleSubFolder(id) {
-            const folder = document.getElementById(id);
+        function toggleSubFolder(folderId) {
+            const folder = document.getElementById(folderId);
             folder.style.display = folder.style.display === 'none' ? 'block' : 'none';
         }
 
         function goBack() {
+            // Go back to login screen
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('loginPage').style.display = 'block';
         }
     </script>
+
 </body>
 </html>
