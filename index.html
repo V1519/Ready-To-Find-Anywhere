@@ -209,6 +209,28 @@
     <script>
         let attempts = 0;
         let maxAttempts = 3;
+        let blockTimer;
+        let blockTime = 60 * 60 * 1000; // 1 hour in milliseconds
+
+        // Display login block message and countdown timer
+        function blockUser() {
+            document.getElementById("loginBlockMessage").style.display = "block";
+            document.getElementById("loginForm").style.display = "none";
+
+            let timeRemaining = blockTime;
+            blockTimer = setInterval(function () {
+                timeRemaining -= 1000;
+                let minutes = Math.floor(timeRemaining / 60000);
+                let seconds = Math.floor((timeRemaining % 60000) / 1000);
+                document.getElementById("loginBlockMessage").innerText = `Too many failed attempts. Please try again after ${minutes}:${seconds < 10 ? '0' : ''}${seconds} minutes.`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(blockTimer);
+                    document.getElementById("loginBlockMessage").innerText = "You can try logging in again.";
+                    document.getElementById("loginForm").style.display = "block";
+                }
+            }, 1000);
+        }
 
         // Login form submission
         document.getElementById("loginForm").onsubmit = function (event) {
@@ -217,7 +239,6 @@
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
 
-            // Simulate login credentials (replace with actual validation in real use)
             if (username === "virajgite32@gmail.com" && password === "viraj@234632") {
                 document.getElementById("loginSection").style.display = "none";
                 document.getElementById("successSection").style.display = "block";
@@ -225,8 +246,7 @@
                 attempts++;
                 document.getElementById("loginMessage").style.display = "block";
                 if (attempts >= maxAttempts) {
-                    document.getElementById("loginBlockMessage").style.display = "block";
-                    document.getElementById("loginForm").style.display = "none";
+                    blockUser();
                 }
             }
         };
