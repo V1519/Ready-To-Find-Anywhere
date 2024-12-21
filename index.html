@@ -15,14 +15,14 @@
         gtag('config', 'G-2T91XQ8C1K');
     </script>
 
-    <!-- Font Awesome for Google Drive Icon -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #2c2c2c; /* Dark background */
-            color: #fff; /* White text */
+            background-color: #2c2c2c;
+            color: #fff;
             margin: 0;
             padding: 0;
             display: flex;
@@ -45,7 +45,6 @@
             margin: 20px;
         }
 
-        /* Redesigned login container */
         .login-container {
             background-color: #444;
             padding: 30px;
@@ -87,7 +86,6 @@
             margin-top: 10px;
         }
 
-        /* Folder Styles */
         .folder {
             background-color: #444;
             padding: 15px;
@@ -102,7 +100,6 @@
             background-color: #555;
         }
 
-        /* Subfolder Styles */
         .subfolder {
             background-color: #555;
             padding: 12px;
@@ -110,7 +107,7 @@
             cursor: pointer;
             border-radius: 5px;
             display: none;
-            padding-left: 20px; /* Indentation for subfolders */
+            padding-left: 20px;
             font-weight: normal;
         }
 
@@ -133,7 +130,6 @@
             margin-right: 10px;
         }
 
-        /* Vertical Layout for Drive Folder Links */
         .drive-links {
             display: flex;
             flex-direction: column;
@@ -141,7 +137,6 @@
             padding-left: 0;
         }
 
-        /* Go Back Button */
         .go-back-btn {
             background-color: #555;
             padding: 10px 20px;
@@ -153,7 +148,6 @@
             margin: 20px auto;
         }
 
-        /* Mobile Responsiveness */
         @media (max-width: 600px) {
             .container {
                 width: 95%;
@@ -169,7 +163,6 @@
             }
         }
 
-        /* Locked Screen styles */
         #lockedScreen {
             display: none;
             text-align: center;
@@ -204,7 +197,6 @@
             <div id="driveLinksPage">
                 <h3>My Drive</h3>
 
-                <!-- Main Folder -->
                 <div class="folder" ondblclick="toggleFolder('myDriveSubfolders')"> <i class="fab fa-google-drive"></i> My Drive </div>
 
                 <!-- Subfolders Section -->
@@ -230,35 +222,34 @@
             </div>
 
             <!-- Contacts Section -->
-            <div class="folder" ondblclick="toggleFolder('mycontactsSubfolders')"> <i class="fab fa-phone"></i> My Contacts</div>
-                <!-- My Friends Group -->
-                <div ondblclick="toggleFolder('myFriendsGroup')" class="subfolder" >My Friends Contacts</div>
-                <div id="myFriendsGroup" class="subfolder"><div id="mycontactsSubfolders" class="subfolder'">
-                    <div id="myFriendscontactsSubfolders" class="subfolder">
-                    <div class="folder" ondblclick="window.location.href='tel:+919699441487'"><i class="fas fa-phone"></i> Prajwal Sabale (Home): +919699441487</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+918208156651'"><i class="fas fa-phone"></i> Sarthak Tambe (Home): +918208156651</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919552848541'"><i class="fas fa-phone"></i> Sahil Murade (Home): +919552848541</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917517823092'"><i class="fas fa-phone"></i> Saiprit Murade (Home): +917517823092</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919359081125'"><i class="fas fa-phone"></i> Sahil Murade (Tab): +919359081125</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917498062804'"><i class="fas fa-phone"></i> Saiprit Murade (Tab): +917498062804</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919673846464'"><i class="fas fa-phone"></i> Sarthak Khaire (Tab): +919673846464</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917020327222'"><i class="fas fa-phone"></i> Niraj Adsare (Tab): +917020327222</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+918010454207'"><i class="fas fa-phone"></i> Sarthak Tambe (Tab): +918010454207</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917498120117'"><i class="fas fa-phone"></i> Swaraj Dhamale (Tab): +917498120117</div>
+            <div class="folder" ondblclick="toggleFolder('mycontactsSubfolders')"> <i class="fas fa-phone-alt"></i> My Contacts</div>
+            <div id="mycontactsSubfolders" class="subfolder">
+                <!-- My Friends Contacts -->
+                <div class="folder" ondblclick="toggleFolder('myFriendsGroup')"><i class="fas fa-users"></i> My Friends Contacts</div>
+                <div id="myFriendsGroup" class="subfolder">
+                    <div class="folder" ondblclick="window.location.href='tel:+919699441487'"><i class="fas fa-phone"></i> Prajwal Sabale (Home)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+918208156651'"><i class="fas fa-phone"></i> Sarthak Tambe (Home)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919552848541'"><i class="fas fa-phone"></i> Sahil Murade (Home)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+917517823092'"><i class="fas fa-phone"></i> Saiprit Murade (Home)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919359081125'"><i class="fas fa-phone"></i> Sahil Murade (Tab)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+917498062804'"><i class="fas fa-phone"></i> Saiprit Murade (Tab)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919673846464'"><i class="fas fa-phone"></i> Sarthak Khaire (Tab)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+917020327222'"><i class="fas fa-phone"></i> Niraj Adsare (Tab)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+918010454207'"><i class="fas fa-phone"></i> Sarthak Tambe (Tab)</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+917498120117'"><i class="fas fa-phone"></i> Swaraj Dhamale (Tab)</div>
                 </div>
-             </div>
 
-                <!-- My Family Group -->
-                <div ondblclick="toggleFolder('myFamilyGroup')" class="subfolder">My Family Contacts</div>
-                <div id="myFamilyGroup" class="subfolder"><div id="myfamilycontactsSubfolders" class="subfolder">
-                    <div id="myFamilycontactsSubfolders" class="subfolder">
-                    <div class="folder" ondblclick="window.location.href='tel:+919890101845'"><i class="fas fa-phone"></i> Rajendra Gite: +919890101845</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919409684107'"><i class="fas fa-phone"></i> Rajendra Gite: +919409684107</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919890603513'"><i class="fas fa-phone"></i> Sandip Gite: +919890603513</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919284120495'"><i class="fas fa-phone"></i> Viraj Gite: +919284120495</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917756066502'"><i class="fas fa-phone"></i> Archana Gite: +917756066502</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919860354540'"><i class="fas fa-phone"></i> Mangesh Gite: +919860354540</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919075307107'"><i class="fas fa-phone"></i> Sayali Gite: +919075307107</div>
+                <!-- My Family Contacts -->
+                <div class="folder" ondblclick="toggleFolder('myFamilyGroup')"><i class="fas fa-users-cog"></i> My Family Contacts</div>
+                <div id="myFamilyGroup" class="subfolder">
+                    <div class="folder" ondblclick="window.location.href='tel:+919890101845'"><i class="fas fa-phone"></i> Rajendra Gite</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919409684107'"><i class="fas fa-phone"></i> Rajendra Gite</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919890603513'"><i class="fas fa-phone"></i> Sandip Gite</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919284120495'"><i class="fas fa-phone"></i> Viraj Gite</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+917756066502'"><i class="fas fa-phone"></i> Archana Gite</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919860354540'"><i class="fas fa-phone"></i> Mangesh Gite</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919075307107'"><i class="fas fa-phone"></i> Sayali Gite</div>
+                    <div class="folder" ondblclick="window.location.href='tel:+919130383513'"><i class="fas fa-phone"></i> Sarthak Gite</div>
                 </div>
             </div>
 
@@ -267,15 +258,6 @@
     </div>
 
     <script>
-        function toggleFolder(folderId) {
-            var folder = document.getElementById(folderId);
-            folder.style.display = (folder.style.display === 'none' || folder.style.display === '') ? 'block' : 'none';
-        }
-    </script>
-</body>
-
-</html>    <script>
-        // Simple login validation
         const validUsername = 'virajgite32@gmail.com';
         const validPassword = 'viraj@234632';
 
@@ -283,7 +265,6 @@
         const loginSection = document.getElementById('loginSection');
         const successSection = document.getElementById('successSection');
         const loginMessage = document.getElementById('loginMessage');
-        const lockedScreen = document.getElementById('lockedScreen');
 
         loginForm.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -302,18 +283,7 @@
             const folder = document.getElementById(folderId);
             folder.style.display = folder.style.display === 'none' ? 'block' : 'none';
         }
-
-        function logout() {
-            successSection.style.display = 'none';
-            lockedScreen.style.display = 'block';
-        }
-
-        function goBackToLogin() {
-            lockedScreen.style.display = 'none';
-            loginSection.style.display = 'block';
-        }
     </script>
-
 </body>
 
 </html>
