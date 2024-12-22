@@ -193,63 +193,80 @@
         <div id="successSection" style="display:none;">
             <h1>Welcome Back Mr. Viraj Rajendra Gite!</h1>
 
-            <!-- My Drive Folder Section -->
-            <div id="driveLinksPage">
-                
+            <!-- Main Folders Section -->
+            <div id="mainFolders">
 
-                <div class="folder" ondblclick="toggleFolder('myDriveSubfolders')"> <i class="fab fa-google-drive"></i> My Drive </div>
-
-                <!-- Subfolders Section -->
+                <!-- My Songs Folder -->
+               <div class="folder" ondblclick="toggleFolder('mysongsSubfolders')">
+    <i class="fas fa-music"></i> My Songs
+</div>
+                 <div id="mysongsSubfolders" class="subfolder">
+                   <div class="drive-links">
+                      <a href="https://drive.google.com/drive/folders/1-IXfN50_98z7UCfd6AuyvbluNYWCK8jy?usp=sharing">
+                          <i class="fas fa-headphones"></i> Music
+                      </a>
+                      <a href="https://drive.google.com/drive/folders/1RNmXHrgS5V_j9TsFKFC6rN5Rca3wIB__?usp=sharing">
+                          <i class="fas fa-volume-up"></i> Bgm
+                      </a>
+                   </div>
+               </div>
+               
+               <!-- My Drive Folder -->
+                <div class="folder" ondblclick="toggleFolder('myDriveSubfolders')">
+                   <i class="fa">&#xf07b;</i> My Files
+                </div>
                 <div id="myDriveSubfolders" class="subfolder">
                     <div class="drive-links">
                         <a href="https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing">
-                            <i class="fab fa-google-drive"></i> C.V. Otur
+                            <i class="fas fa-images"></i> C.V. Otur
                         </a>
                         <a href="https://drive.google.com/drive/folders/1T8JubDmOVCGtesj8PNx5hvEO1Th_cXS9?usp=sharing">
-                            <i class="fab fa-google-drive"></i> Important
+                            <i class="fa">&#xf0c5;</i> Important
                         </a>
                         <a href="https://drive.google.com/drive/folders/14_AuX_uppE5GAaVUkxv2hQhqbVAoF5t8?usp=sharing">
-                            <i class="fab fa-google-drive"></i> Tour
+                            <i class="fas fa-images"></i> Tour
                         </a>
                         <a href="https://drive.google.com/drive/folders/1kdipLVB3HWPLgu57Vl4231SAc8IFvhq6?usp=sharing">
-                            <i class="fab fa-google-drive"></i> My Family
+                            <i class="fas fa-images"></i> My Family
                         </a>
                         <a href="https://drive.google.com/drive/mobile/folders/1cBvGNxPYZgQ1UlhfhcXDaRQRCu5lKejh">
-                            <i class="fab fa-google-drive"></i> Solo Leveling Manga
+                            <i class="fa">&#xf02d;</i> Solo Leveling Manga
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Contacts Section -->
-            <div class="folder" ondblclick="toggleFolder('mycontactsSubfolders')"> <i class="fas fa-phone-alt"></i> My Contacts</div>
-            <div id="mycontactsSubfolders" class="subfolder">
-                <!-- My Friends Contacts -->
-                <div class="folder" ondblclick="toggleFolder('myFriendsGroup')"><i class="fas fa-users"></i> My Friends Contacts</div>
-                <div id="myFriendsGroup" class="subfolder">
-                    <div class="folder" ondblclick="window.location.href='tel:+919699441487'"><i class="fas fa-phone"></i> Prajwal Sabale (Home)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+918208156651'"><i class="fas fa-phone"></i> Sarthak Tambe (Home)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919552848541'"><i class="fas fa-phone"></i> Sahil Murade (Home)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917517823092'"><i class="fas fa-phone"></i> Saiprit Murade (Home)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919359081125'"><i class="fas fa-phone"></i> Sahil Murade (Tab)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917498062804'"><i class="fas fa-phone"></i> Saiprit Murade (Tab)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919673846464'"><i class="fas fa-phone"></i> Sarthak Khaire (Tab)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917020327222'"><i class="fas fa-phone"></i> Niraj Adsare (Tab)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+918010454207'"><i class="fas fa-phone"></i> Sarthak Tambe (Tab)</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917498120117'"><i class="fas fa-phone"></i> Swaraj Dhamale (Tab)</div>
+                <!-- My Contacts Folder -->
+                <div class="folder" ondblclick="toggleFolder('mycontactsSubfolders')">
+                    <i class="fas fa-phone-alt"></i> My Contacts
                 </div>
+                <div id="mycontactsSubfolders" class="subfolder">
+                    <!-- My Friends Contacts -->
+                    <div class="folder" ondblclick="toggleFolder('myFriendsGroup')"><i class="fas fa-users"></i> My Friends Contacts</div>
+                    <div id="myFriendsGroup" class="subfolder">
+                        <div class="folder" ondblclick="window.location.href='tel:+919699441487'"><i class="fas fa-phone"></i> Prajwal Sabale (Home)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+918208156651'"><i class="fas fa-phone"></i> Sarthak Tambe (Home)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919552848541'"><i class="fas fa-phone"></i> Sahil Murade (Home)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+917517823092'"><i class="fas fa-phone"></i> Saiprit Murade (Home)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919359081125'"><i class="fas fa-phone"></i> Sahil Murade (Tab)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+917498062804'"><i class="fas fa-phone"></i> Saiprit Murade (Tab)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919673846464'"><i class="fas fa-phone"></i> Sarthak Khaire (Tab)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+917020327222'"><i class="fas fa-phone"></i> Niraj Adsare (Tab)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+918010454207'"><i class="fas fa-phone"></i> Sarthak Tambe (Tab)</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+917498120117'"><i class="fas fa-phone"></i> Swaraj Dhamale (Tab)</div>
+                    </div>
 
-                <!-- My Family Contacts -->
-                <div class="folder" ondblclick="toggleFolder('myFamilyGroup')"><i class="fas fa-users-cog"></i> My Family Contacts</div>
-                <div id="myFamilyGroup" class="subfolder">
-                    <div class="folder" ondblclick="window.location.href='tel:+919890101845'"><i class="fas fa-phone"></i> Rajendra Gite</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919409684107'"><i class="fas fa-phone"></i> Rajendra Gite</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919890603513'"><i class="fas fa-phone"></i> Sandip Gite</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919284120495'"><i class="fas fa-phone"></i> Viraj Gite</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+917756066502'"><i class="fas fa-phone"></i> Archana Gite</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919860354540'"><i class="fas fa-phone"></i> Mangesh Gite</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919075307107'"><i class="fas fa-phone"></i> Sayali Gite</div>
-                    <div class="folder" ondblclick="window.location.href='tel:+919130383513'"><i class="fas fa-phone"></i> Sarthak Gite</div>
+                    <!-- My Family Contacts -->
+                    <div class="folder" ondblclick="toggleFolder('myFamilyGroup')"><i class="fas fa-users-cog"></i> My Family Contacts</div>
+                    <div id="myFamilyGroup" class="subfolder">
+                        <div class="folder" ondblclick="window.location.href='tel:+919890101845'"><i class="fas fa-phone"></i> Rajendra Gite</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919409684107'"><i class="fas fa-phone"></i> Rajendra Gite</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919890603513'"><i class="fas fa-phone"></i> Sandip Gite</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919284120495'"><i class="fas fa-phone"></i> Viraj Gite</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+917756066502'"><i class="fas fa-phone"></i> Archana Gite</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919860354540'"><i class="fas fa-phone"></i> Mangesh Gite</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919075307107'"><i class="fas fa-phone"></i> Sayali Gite</div>
+                        <div class="folder" ondblclick="window.location.href='tel:+919130383513'"><i class="fas fa-phone"></i> Sarthak Gite</div>
+                    </div>
                 </div>
             </div>
 
