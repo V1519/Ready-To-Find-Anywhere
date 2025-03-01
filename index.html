@@ -94,11 +94,6 @@
             transition: all 0.3s ease-in-out;
         }
 
-        .login-container:hover {
-            box-shadow: 0 6px 40px rgba(0, 0, 0, 0.5);
-            transform: scale(1.05);
-        }
-
         .inputField {
             width: 80%;
             padding: 14px;
@@ -132,26 +127,9 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        .loginButton::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background-color: #2c8e41;
-            transition: all 0.4s ease;
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-        }
-
         .loginButton:hover {
             background-color: #2c8e41;
             transform: translateY(-5px);
-        }
-
-        .loginButton:hover::after {
-            transform: translate(-50%, -50%) scale(1);
         }
 
         /* Login Error Message */
@@ -180,23 +158,6 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .subfolder {
-            background-color: #555;
-            padding: 12px;
-            margin: 5px 0;
-            cursor: pointer;
-            border-radius: 8px;
-            font-weight: normal;
-            display: none;
-            padding-left: 20px;
-        }
-
-        .subfolder:hover {
-            background-color: #666;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
         .drive-links a {
             background-color: #333;
             padding: 14px;
@@ -209,10 +170,6 @@
             position: relative;
             overflow: hidden;
             transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .drive-links a i {
-            margin-right: 10px;
         }
 
         .drive-links a:hover {
@@ -254,14 +211,27 @@
             .container {
                 width: 95%;
             }
-
             h1 {
                 font-size: 2rem;
             }
-
-            .folder, .drive-links a {
+            .folder {
                 font-size: 0.9rem;
             }
+        }
+
+        /* Scroll to Top Button */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it is above other elements */
         }
     </style>
 </head>
@@ -282,17 +252,15 @@
     </div>
 
     <!-- Success Section -->
-       <div id="loading" class="loading" </div>
-
-           <div id="successSection" style="display: none;">
-        <div id="welcomeMessage">Welcome Back, Mr.Viraj Rajendra Gite!</div>
+    <div id="successSection" style="display: none;">
+        <div id="welcomeMessage">Welcome Back, Mr. Viraj Rajendra Gite!</div>
         
         <div id="mainFolders">
             <!-- My Songs Folder -->
             <div class="folder" ondblclick="toggleFolder('mysongsSubfolders')">
                 <i class="fas fa-music"></i> My Songs
             </div>
-            <div id="mysongsSubfolders" class="subfolder">
+            <div id="mysongsSubfolders" class="subfolder" style="display: none;">
                 <div class="drive-links">
                     <a href="https://drive.google.com/drive/folders/1-IXfN50_98z7UCfd6AuyvbluNYWCK8jy?usp=sharing">
                         <i class="fas fa-headphones"></i> Music
@@ -307,7 +275,7 @@
             <div class="folder" ondblclick="toggleFolder('myDriveSubfolders')">
                 <i class="fa">&#xf07b;</i> My Files
             </div>
-            <div id="myDriveSubfolders" class="subfolder">
+            <div id="myDriveSubfolders" class="subfolder" style="display: none;">
                 <div class="drive-links">
                     <a href="https://drive.google.com/drive/folders/1-wrFpLpvqZVeaSLi1NE9LkWmxWRM1Z-3?usp=sharing">
                         <i class="fas fa-images"></i> C.V. Otur
@@ -331,10 +299,10 @@
             <div class="folder" ondblclick="toggleFolder('mycontactsSubfolders')">
                 <i class="fas fa-phone-alt"></i> My Contacts
             </div>
-            <div id="mycontactsSubfolders" class="subfolder">
+            <div id="mycontactsSubfolders" class="subfolder" style="display: none;">
                 <!-- My Friends Contacts -->
                 <div class="folder" ondblclick="toggleFolder('myFriendsGroup')"><i class="fas fa-users"></i> My Friends Contacts</div>
-                <div id="myFriendsGroup" class="subfolder">
+                <div id="myFriendsGroup" class="subfolder" style="display: none;">
                     <div class="folder" ondblclick="window.location.href='tel:+919699441487'"><i class="fas fa-phone"></i> Prajwal Sabale (Home)</div>
                     <div class="folder" ondblclick="window.location.href='tel:+918208156651'"><i class="fas fa-phone"></i> Sarthak Tambe (Home)</div>
                     <div class="folder" ondblclick="window.location.href='tel:+919552848541'"><i class="fas fa-phone"></i> Sahil Murade (Home)</div>
@@ -384,12 +352,14 @@
             </div>
         </div>
 
-        <button class="go-back-btn" onclick="window.location.href='/">Go Back</button>
-    </div>
 </div>
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
+
 <!-- Footer -->
 <footer>
-    <p>&copy; Created By Mr.Viraj Rajendra Gite All Rights Reserved.</p>
+    <p>&copy; Created By Mr. Viraj Rajendra Gite. All Rights Reserved.</p>
 </footer>
 
 <script>
@@ -405,22 +375,30 @@
         }, 30000); // 30 seconds
     }
 
-        // Disable right-click (context menu)
-        document.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-        });
+    // Toggle Folder Visibility
+    function toggleFolder(folderId) {
+        const folder = document.getElementById(folderId);
+        folder.style.display = folder.style.display === 'block' ? 'none' : 'block';
+    }
 
-        // Disable text selection
-        document.addEventListener('selectstart', function(event) {
-            event.preventDefault();
-        });
+    // Go Back Button Functionality
+    function goBack() {
+        document.getElementById('successSection').style.display = 'none';
+        document.getElementById('loginSection').style.display = 'block';
+        timeoutReached = false;
+        clearTimeout(loginTimeout); // Clear timeout
+        startLoginTimeout(); // Restart timeout
+    }
 
-        // Disable keyboard shortcuts (Ctrl + C, Ctrl + V, Ctrl + U)
-        document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && (event.key === 'c' || event.key === 'v' || event.key === 'u')) {
-                event.preventDefault();
-            }
-        });
+    // Scroll to Top Button Functionality
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollToTopBtn.style.display = "block"; // Show button
+        } else {
+            scrollToTopBtn.style.display = "none"; // Hide button
+        }
+    };
 
     // Login Form Submission Handler
     document.getElementById('loginForm').addEventListener('submit', function(event) {
@@ -451,19 +429,26 @@
         startLoginTimeout(); // Start the timeout on login attempt
     });
 
-    // Toggle Folder Visibility
-    function toggleFolder(folderId) {
-        const folder = document.getElementById(folderId);
-        folder.style.display = folder.style.display === 'block' ? 'none' : 'block';
-    }
+    // Disable right-click (context menu)
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
 
-    // Go Back Button Functionality
-    function goBack() {
-        document.getElementById('successSection').style.display = 'none';
-        document.getElementById('loginSection').style.display = 'block';
-        timeoutReached = false;
-        clearTimeout(loginTimeout); // Clear timeout
-        startLoginTimeout(); // Restart timeout
+    // Disable text selection
+    document.addEventListener('selectstart', function(event) {
+        event.preventDefault();
+    });
+
+    // Disable keyboard shortcuts (Ctrl + C, Ctrl + V, Ctrl + U)
+    document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && (event.key === 'c' || event.key === 'v' || event.key === 'u')) {
+            event.preventDefault();
+        }
+    });
+
+    // Scroll to Top Function
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 </script>
 
